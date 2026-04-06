@@ -1,0 +1,45 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "dispo",
+        "fahrer"
+      ],
+      "default": "fahrer",
+      "description": "Benutzerrolle"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "is_available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Verf\u00fcgbar f\u00fcr Auftr\u00e4ge"
+    },
+    "current_latitude": {
+      "type": "number",
+      "description": "Aktuelle GPS Position - Breitengrad"
+    },
+    "current_longitude": {
+      "type": "number",
+      "description": "Aktuelle GPS Position - L\u00e4ngengrad"
+    },
+    "vehicle": {
+      "type": "string",
+      "description": "Fahrzeug / Kennzeichen"
+    },
+    "shift_start": {
+      "type": "string",
+      "description": "Schichtbeginn"
+    },
+    "shift_end": {
+      "type": "string",
+      "description": "Schichtende"
+    }
+  }
+}

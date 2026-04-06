@@ -1,0 +1,66 @@
+{
+  "name": "Customer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name des Kunden oder der Firma"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "privat",
+        "gewerblich"
+      ],
+      "description": "Kundentyp"
+    },
+    "address": {
+      "type": "string",
+      "description": "Vollst\u00e4ndige Adresse"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Breitengrad"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "L\u00e4ngengrad"
+    },
+    "contact_person": {
+      "type": "string",
+      "description": "Ansprechpartner"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "email": {
+      "type": "string",
+      "description": "E-Mail-Adresse"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Anmerkungen zum Kunden"
+    },
+    "sla_priority": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "premium",
+        "express"
+      ],
+      "default": "standard",
+      "description": "SLA-Priorit\u00e4t"
+    },
+    "contract_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Vertrag aktiv"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "address"
+  ]
+}

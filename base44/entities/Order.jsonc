@@ -1,0 +1,147 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "description": "Referenz zum Kunden"
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "Name des Kunden (denormalisiert)"
+    },
+    "customer_type": {
+      "type": "string",
+      "enum": [
+        "privat",
+        "gewerblich"
+      ],
+      "description": "Kundentyp"
+    },
+    "address": {
+      "type": "string",
+      "description": "Einsatzadresse"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Breitengrad"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "L\u00e4ngengrad"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "offen",
+        "zugewiesen",
+        "in_bearbeitung",
+        "erledigt",
+        "problem"
+      ],
+      "default": "offen",
+      "description": "Auftragsstatus"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "niedrig",
+        "normal",
+        "hoch",
+        "dringend"
+      ],
+      "default": "normal",
+      "description": "Priorit\u00e4t"
+    },
+    "assigned_driver_email": {
+      "type": "string",
+      "description": "E-Mail des zugewiesenen Fahrers"
+    },
+    "assigned_driver_name": {
+      "type": "string",
+      "description": "Name des zugewiesenen Fahrers"
+    },
+    "tasks": {
+      "type": "array",
+      "description": "Auszuf\u00fchrende T\u00e4tigkeiten",
+      "items": {
+        "type": "string"
+      }
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Startzeit des Einsatzes"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Endzeit des Einsatzes"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Dauer in Minuten"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Geplantes Datum"
+    },
+    "photo_before_url": {
+      "type": "string",
+      "description": "Foto vor der Arbeit"
+    },
+    "photo_after_url": {
+      "type": "string",
+      "description": "Foto nach der Arbeit"
+    },
+    "materials_used": {
+      "type": "array",
+      "description": "Verbrauchte Materialien",
+      "items": {
+        "type": "object",
+        "properties": {
+          "material": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "driver_notes": {
+      "type": "string",
+      "description": "Notizen des Fahrers"
+    },
+    "dispatcher_notes": {
+      "type": "string",
+      "description": "Notizen der Disposition"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "default": false,
+      "description": "Wiederkehrender Auftrag"
+    },
+    "recurring_pattern": {
+      "type": "string",
+      "description": "Wiederholungsmuster (z.B. t\u00e4glich, w\u00f6chentlich)"
+    },
+    "driver_latitude": {
+      "type": "number",
+      "description": "Aktuelle GPS Position Fahrer - Breitengrad"
+    },
+    "driver_longitude": {
+      "type": "number",
+      "description": "Aktuelle GPS Position Fahrer - L\u00e4ngengrad"
+    }
+  },
+  "required": [
+    "customer_id",
+    "address",
+    "status"
+  ]
+}

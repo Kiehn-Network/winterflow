@@ -1,0 +1,43 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "entity_type": {
+      "type": "string",
+      "description": "Betroffene Entit\u00e4t (Order, Customer, etc.)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID der betroffenen Entit\u00e4t"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "erstellt",
+        "bearbeitet",
+        "status_geaendert",
+        "zugewiesen",
+        "gestartet",
+        "beendet",
+        "geloescht"
+      ],
+      "description": "Durchgef\u00fchrte Aktion"
+    },
+    "details": {
+      "type": "string",
+      "description": "Details zur \u00c4nderung"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "E-Mail des Benutzers"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Name des Benutzers"
+    }
+  },
+  "required": [
+    "entity_type",
+    "action"
+  ]
+}
