@@ -2,6 +2,10 @@
   "name": "Order",
   "type": "object",
   "properties": {
+    "company_id": {
+      "type": "string",
+      "description": "Referenz zur Firma (Mandant)"
+    },
     "customer_id": {
       "type": "string",
       "description": "Referenz zum Kunden"
@@ -128,7 +132,7 @@
     },
     "recurring_pattern": {
       "type": "string",
-      "description": "Wiederholungsmuster (z.B. t\u00e4glich, w\u00f6chentlich)"
+      "description": "Wiederholungsmuster"
     },
     "driver_latitude": {
       "type": "number",

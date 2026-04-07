@@ -83,7 +83,7 @@ export default function HomePage() {
           {/* Logo Badge */}
           <div className="flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-8">
             <Snowflake className="w-5 h-5 text-primary animate-spin" style={{ animationDuration: '6s' }} />
-            <span className="text-primary font-semibold text-sm tracking-wide">FrostGuard Winterdienst</span>
+            <span className="text-primary font-semibold text-sm tracking-wide">WinterFlow Winterdienst</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight max-w-4xl">
@@ -129,7 +129,7 @@ export default function HomePage() {
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold">Alles, was Sie brauchen</h2>
           <p className="text-muted-foreground mt-3 text-lg max-w-xl mx-auto">
-            FrostGuard deckt alle Anforderungen moderner Winterdienstbetriebe ab.
+            WinterFlow deckt alle Anforderungen moderner Winterdienstbetriebe ab.
           </p>
         </div>
 
@@ -176,7 +176,7 @@ export default function HomePage() {
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
         <div className="flex items-center justify-center gap-2">
           <Snowflake className="w-4 h-4 text-primary" />
-          <span>FrostGuard Winterdienst-Management © {new Date().getFullYear()}</span>
+          <span>WinterFlow Winterdienst-Management © {new Date().getFullYear()}</span>
         </div>
       </footer>
     </div>

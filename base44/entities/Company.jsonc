@@ -1,0 +1,54 @@
+{
+  "name": "Company",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Firmenname"
+    },
+    "subdomain": {
+      "type": "string",
+      "description": "Subdomain (z.B. 'muster' f\u00fcr muster.winterflow.de)"
+    },
+    "contact_email": {
+      "type": "string",
+      "description": "Kontakt E-Mail der Firma"
+    },
+    "contact_phone": {
+      "type": "string",
+      "description": "Telefonnummer"
+    },
+    "address": {
+      "type": "string",
+      "description": "Firmenadresse"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "Logo URL"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Firma aktiv"
+    },
+    "max_users": {
+      "type": "number",
+      "default": 10,
+      "description": "Maximale Nutzeranzahl"
+    },
+    "plan": {
+      "type": "string",
+      "enum": [
+        "starter",
+        "professional",
+        "enterprise"
+      ],
+      "default": "starter",
+      "description": "Tarifplan"
+    }
+  },
+  "required": [
+    "name",
+    "subdomain"
+  ]
+}

@@ -5,41 +5,26 @@
     "role": {
       "type": "string",
       "enum": [
+        "superadmin",
         "admin",
-        "dispo",
-        "fahrer"
+        "dispatcher",
+        "driver"
       ],
-      "default": "fahrer",
+      "default": "driver",
       "description": "Benutzerrolle"
     },
-    "phone": {
+    "company_id": {
       "type": "string",
-      "description": "Telefonnummer"
+      "description": "Referenz zur Firma (Mandant)"
     },
-    "is_available": {
+    "company_name": {
+      "type": "string",
+      "description": "Firmenname (denormalisiert)"
+    },
+    "is_active": {
       "type": "boolean",
       "default": true,
-      "description": "Verf\u00fcgbar f\u00fcr Auftr\u00e4ge"
-    },
-    "current_latitude": {
-      "type": "number",
-      "description": "Aktuelle GPS Position - Breitengrad"
-    },
-    "current_longitude": {
-      "type": "number",
-      "description": "Aktuelle GPS Position - L\u00e4ngengrad"
-    },
-    "vehicle": {
-      "type": "string",
-      "description": "Fahrzeug / Kennzeichen"
-    },
-    "shift_start": {
-      "type": "string",
-      "description": "Schichtbeginn"
-    },
-    "shift_end": {
-      "type": "string",
-      "description": "Schichtende"
+      "description": "Nutzer aktiv"
     }
   }
 }

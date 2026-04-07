@@ -2,6 +2,10 @@
   "name": "Customer",
   "type": "object",
   "properties": {
+    "company_id": {
+      "type": "string",
+      "description": "Referenz zur Firma (Mandant)"
+    },
     "name": {
       "type": "string",
       "description": "Name des Kunden oder der Firma"

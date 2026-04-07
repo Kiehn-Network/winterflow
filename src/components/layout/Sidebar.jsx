@@ -17,11 +17,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const allNavItems = [
-  { path: "/", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "dispo"] },
-  { path: "/orders", label: "Aufträge", icon: ClipboardList, roles: ["admin", "dispo"] },
-  { path: "/driver", label: "Meine Aufträge", icon: Truck, roles: ["fahrer"] },
-  { path: "/customers", label: "Kunden", icon: Users, roles: ["admin", "dispo"] },
-  { path: "/reports", label: "Auswertung", icon: BarChart3, roles: ["admin", "dispo"] },
+  { path: "/", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "dispatcher", "dispo"] },
+  { path: "/orders", label: "Aufträge", icon: ClipboardList, roles: ["admin", "dispatcher", "dispo"] },
+  { path: "/driver", label: "Meine Aufträge", icon: Truck, roles: ["driver", "fahrer"] },
+  { path: "/customers", label: "Kunden", icon: Users, roles: ["admin", "dispatcher", "dispo"] },
+  { path: "/reports", label: "Auswertung", icon: BarChart3, roles: ["admin", "dispatcher", "dispo"] },
   { path: "/settings", label: "Einstellungen", icon: Settings, roles: ["admin"] },
 ];
 
@@ -35,7 +35,7 @@ export default function Sidebar() {
     base44.auth.me().then(setUser).catch(() => {});
   }, []);
 
-  const role = user?.role || "fahrer";
+  const role = user?.role || "driver";
   const navItems = allNavItems.filter((item) => item.roles.includes(role));
 
   const handleLogout = () => {
@@ -51,7 +51,7 @@ export default function Sidebar() {
         </div>
         {!collapsed && (
           <div className="min-w-0">
-            <h1 className="font-bold text-sidebar-foreground text-lg truncate">FrostGuard</h1>
+            <h1 className="font-bold text-sidebar-foreground text-lg truncate">WinterFlow</h1>
             <p className="text-xs text-sidebar-foreground/50 truncate">Winterdienst</p>
           </div>
         )}
