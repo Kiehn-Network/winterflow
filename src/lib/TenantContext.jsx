@@ -26,6 +26,7 @@ export const TenantProvider = ({ children }) => {
   const [company, setCompany] = useState(null);
   const [companyId, setCompanyId] = useState(null);
   const [loadingTenant, setLoadingTenant] = useState(true);
+  const [impersonating, setImpersonating] = useState(false);
 
   useEffect(() => {
     initTenant();
@@ -49,8 +50,20 @@ export const TenantProvider = ({ children }) => {
     setLoadingTenant(false);
   };
 
+  const loginAsCompany = (c) => {
+    setCompany(c);
+    setCompanyId(c.id);
+    setImpersonating(true);
+  };
+
+  const logoutFromCompany = () => {
+    setCompany(null);
+    setCompanyId(null);
+    setImpersonating(false);
+  };
+
   return (
-    <TenantContext.Provider value={{ company, companyId, loadingTenant, setCompany, setCompanyId }}>
+    <TenantContext.Provider value={{ company, companyId, loadingTenant, setCompany, setCompanyId, impersonating, loginAsCompany, logoutFromCompany }}>
       {children}
     </TenantContext.Provider>
   );

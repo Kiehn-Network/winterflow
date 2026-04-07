@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,13 +8,16 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Users, ClipboardList, Mail, Building2, ExternalLink, Copy } from "lucide-react";
+import { ArrowLeft, Users, ClipboardList, Mail, Building2, ExternalLink, Copy, LogIn } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useTenant } from "@/lib/TenantContext";
 
 export default function CompanyDetailPage() {
   const { id } = useParams();
   const qc = useQueryClient();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { loginAsCompany } = useTenant();
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState("driver");
 
@@ -65,14 +68,23 @@ export default function CompanyDetailPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-6">
-      <div className="flex items-center gap-3">
-        <Button variant="ghost" size="icon" asChild>
-          <Link to="/superadmin/companies"><ArrowLeft className="w-4 h-4" /></Link>
-        </Button>
-        <div>
-          <h1 className="text-2xl font-bold">{company.name}</h1>
-          <p className="text-muted-foreground text-sm">{company.plan} · {company.is_active ? 'Aktiv' : 'Inaktiv'}</p>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/superadmin/companies"><ArrowLeft className="w-4 h-4" /></Link>
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold">{company.name}</h1>
+            <p className="text-muted-foreground text-sm">{company.plan} · {company.is_active ? 'Aktiv' : 'Inaktiv'}</p>
+          </div>
         </div>
+        <Button
+          onClick={() => { loginAsCompany(company); navigate("/"); }}
+          className="gap-2"
+        >
+          <LogIn className="w-4 h-4" />
+          Als Firma einloggen
+        </Button>
       </div>
 
       {/* Info + Subdomain */}
