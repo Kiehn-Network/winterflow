@@ -13,6 +13,8 @@ import SuperAdminDashboard from './pages/superadmin/SuperAdminDashboard';
 import CompaniesPage from './pages/superadmin/CompaniesPage';
 import CompanyDetailPage from './pages/superadmin/CompanyDetailPage';
 import HomePage from './pages/HomePage';
+import ImpressumPage from './pages/ImpressumPage';
+import DatenschutzPage from './pages/DatenschutzPage';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
 import DriverView from './pages/DriverView';
@@ -46,6 +48,8 @@ const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/impressum" element={<ImpressumPage />} />
+      <Route path="/datenschutz" element={<DatenschutzPage />} />
       {/* Super Admin Routes */}
       <Route element={<SuperAdminLayout />}>
         <Route path="/superadmin" element={<SuperAdminDashboard />} />

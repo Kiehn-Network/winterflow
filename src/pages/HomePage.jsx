@@ -174,9 +174,14 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-2 mb-3">
           <Snowflake className="w-4 h-4 text-primary" />
           <span>WinterFlow Winterdienst-Management © {new Date().getFullYear()}</span>
+        </div>
+        <div className="flex items-center justify-center gap-4">
+          <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+          <span>·</span>
+          <Link to="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
         </div>
       </footer>
     </div>
