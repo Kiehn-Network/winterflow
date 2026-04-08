@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const allNavItems = [
-  { path: "/", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "dispatcher", "dispo"] },
+  { path: "/dashboard", label: "Dashboard", icon: LayoutDashboard, roles: ["admin", "dispatcher", "dispo"] },
   { path: "/orders", label: "Aufträge", icon: ClipboardList, roles: ["admin", "dispatcher", "dispo"] },
   { path: "/driver", label: "Meine Aufträge", icon: Truck, roles: ["driver", "fahrer"] },
   { path: "/customers", label: "Kunden", icon: Users, roles: ["admin", "dispatcher", "dispo"] },

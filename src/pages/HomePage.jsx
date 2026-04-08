@@ -98,7 +98,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="text-base px-8 py-6 rounded-xl shadow-lg shadow-primary/30">
-              <Link to="/">
+              <Link to="/dashboard">
                 Zum Dashboard
                 <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
@@ -164,7 +164,7 @@ export default function HomePage() {
             Starten Sie jetzt und behalten Sie alle Einsätze im Griff.
           </p>
           <Button asChild size="lg" className="text-base px-10 py-6 rounded-xl shadow-lg shadow-primary/30">
-            <Link to="/">
+            <Link to="/dashboard">
               Jetzt starten
               <ArrowRight className="w-5 h-5 ml-1" />
             </Link>

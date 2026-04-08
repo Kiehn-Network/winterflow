@@ -45,7 +45,7 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
-      <Route path="/home" element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
       {/* Super Admin Routes */}
       <Route element={<SuperAdminLayout />}>
         <Route path="/superadmin" element={<SuperAdminDashboard />} />
@@ -54,7 +54,7 @@ const AuthenticatedApp = () => {
       </Route>
       {/* Regular App Routes */}
       <Route element={<AppLayout />}>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/driver" element={<DriverView />} />
         <Route path="/customers" element={<Customers />} />
