@@ -178,6 +178,7 @@ export default function HomePage() {
           <Snowflake className="w-4 h-4 text-primary" />
           <span>WinterFlow Winterdienst-Management © {new Date().getFullYear()}</span>
         </div>
+        <p className="text-xs text-muted-foreground/70 mb-3">WinterFlow ist Teil des <span className="font-medium text-muted-foreground">Kiehn Network</span></p>
         <div className="flex items-center justify-center gap-4">
           <Link to="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
           <span>·</span>
