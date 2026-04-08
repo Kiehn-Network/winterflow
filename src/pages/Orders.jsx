@@ -9,6 +9,7 @@ import PageHeader from "../components/shared/PageHeader";
 import OrdersTable from "../components/orders/OrdersTable";
 import OrderFormDialog from "../components/orders/OrderFormDialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTenant } from "@/lib/TenantContext";
 
 export default function Orders() {
   const [formOpen, setFormOpen] = useState(false);
@@ -17,25 +18,28 @@ export default function Orders() {
   const [statusFilter, setStatusFilter] = useState("all");
 
   const queryClient = useQueryClient();
+  const { companyId } = useTenant();
 
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["orders"],
-    queryFn: () => base44.entities.Order.list("-created_date", 100),
+    queryKey: ["orders", companyId],
+    queryFn: () => companyId
+      ? base44.entities.Order.filter({ company_id: companyId }, "-created_date", 100)
+      : base44.entities.Order.list("-created_date", 100),
   });
 
   const createMutation = useMutation({
-    mutationFn: (data) => base44.entities.Order.create(data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders"] }),
+    mutationFn: (data) => base44.entities.Order.create({ ...data, company_id: companyId }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders", companyId] }),
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.Order.update(id, data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders", companyId] }),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id) => base44.entities.Order.delete(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["orders", companyId] }),
   });
 
   const handleSave = (data) => {

@@ -25,7 +25,7 @@ export default function DriverView() {
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.Order.update(id, data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["driver-orders"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["driver-orders", user?.email] }),
   });
 
   const handleStart = (order) => {

@@ -10,31 +10,35 @@ import PageHeader from "../components/shared/PageHeader";
 import CustomerFormDialog from "../components/customers/CustomerFormDialog";
 import CustomerTypeBadge from "../components/shared/CustomerTypeBadge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTenant } from "@/lib/TenantContext";
 
 export default function Customers() {
   const [formOpen, setFormOpen] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState(null);
   const [search, setSearch] = useState("");
   const queryClient = useQueryClient();
+  const { companyId } = useTenant();
 
   const { data: customers = [], isLoading } = useQuery({
-    queryKey: ["customers"],
-    queryFn: () => base44.entities.Customer.list("-created_date", 100),
+    queryKey: ["customers", companyId],
+    queryFn: () => companyId
+      ? base44.entities.Customer.filter({ company_id: companyId }, "-created_date", 100)
+      : base44.entities.Customer.list("-created_date", 100),
   });
 
   const createMutation = useMutation({
-    mutationFn: (data) => base44.entities.Customer.create(data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers"] }),
+    mutationFn: (data) => base44.entities.Customer.create({ ...data, company_id: companyId }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers", companyId] }),
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.Customer.update(id, data),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers", companyId] }),
   });
 
   const deleteMutation = useMutation({
     mutationFn: (id) => base44.entities.Customer.delete(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers"] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["customers", companyId] }),
   });
 
   const handleSave = (data) => {

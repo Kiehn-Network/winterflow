@@ -6,11 +6,16 @@ import StatusOverview from "../components/dashboard/StatusOverview";
 import LiveMap from "../components/dashboard/LiveMap";
 import RecentOrders from "../components/dashboard/RecentOrders";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTenant } from "@/lib/TenantContext";
 
 export default function Dashboard() {
+  const { companyId } = useTenant();
+
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["orders"],
-    queryFn: () => base44.entities.Order.list("-created_date", 50),
+    queryKey: ["orders", companyId],
+    queryFn: () => companyId
+      ? base44.entities.Order.filter({ company_id: companyId }, "-created_date", 50)
+      : base44.entities.Order.list("-created_date", 50),
   });
 
   if (isLoading) {

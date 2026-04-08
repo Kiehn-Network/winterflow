@@ -7,13 +7,18 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import { Clock, ClipboardList, Package, Users } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTenant } from "@/lib/TenantContext";
 
 const COLORS = ["hsl(213, 94%, 55%)", "hsl(187, 85%, 48%)", "hsl(152, 69%, 46%)", "hsl(38, 92%, 55%)", "hsl(0, 72%, 55%)"];
 
 export default function Reports() {
+  const { companyId } = useTenant();
+
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["orders"],
-    queryFn: () => base44.entities.Order.list("-created_date", 200),
+    queryKey: ["orders", companyId],
+    queryFn: () => companyId
+      ? base44.entities.Order.filter({ company_id: companyId }, "-created_date", 200)
+      : base44.entities.Order.list("-created_date", 200),
   });
 
   const totalOrders = orders.length;
